@@ -48,7 +48,7 @@ const CreateTeam = ({ onClose, onTeamCreated }) => {
             setSearchLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
-                const res = await fetch(`http://localhost:8080/api/team/search-users?query=${encodeURIComponent(query)}`, {
+                const res = await fetch(`http://localhost:9000/api/team/search-users?query=${encodeURIComponent(query)}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

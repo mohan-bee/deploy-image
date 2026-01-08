@@ -34,7 +34,7 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'online', timestamp: new Date().toISOString() });
 });
 
-app.listen(8080, () => {
+app.listen(9000, () => {
     dbConnection()
     console.log("server is running")
 })

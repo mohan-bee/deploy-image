@@ -189,7 +189,7 @@ const Login = ({ onLoginSuccess }) => {
 
                   <div className="flex items-center justify-center space-x-2 text-xs text-[#8b949e]">
                     <CheckCircle2 className="w-3 h-3 text-[#3ecf8e]" />
-                    <span className="font-mono">Port 8080 • OAuth 2.0</span>
+                    <span className="font-mono">Port 9000 • OAuth 2.0</span>
                   </div>
                 </div>
               </div>
