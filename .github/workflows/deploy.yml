@@ -34,12 +34,10 @@ jobs:
 
       - name: Restart Server
         run: |
-          # Assuming pm2 is used for process management on the server
-          # Replace 'server-app' with your actual pm2 process name if different
-          pm2 restart all || pm2 start server/server.js --name "server-app"
+          # Use pm2 to restart the server. 
+          # If the process isn't running, it will be started.
+          pm2 restart all || pm2 start server/server.js --name "project-devops"
 
-      - name: Update Client (Move build to web server root)
+      - name: Cleanup and Notify
         run: |
-          # Replace /var/www/html with your actual web server root
-          # sudo cp -r client/dist/* /var/www/html/
-          echo "Deployment successful. Ensure your web server points to client/dist or move the files accordingly."
+          echo "Deployment successful. Ensure your web server (e.g., Nginx) is pointing to the 'client/dist' directory."
