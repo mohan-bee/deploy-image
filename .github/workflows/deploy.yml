@@ -1,0 +1,45 @@
+name: Deploy to Self-Hosted Runner
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies (Server)
+        run: |
+          cd server
+          npm install
+
+      - name: Install dependencies (Client)
+        run: |
+          cd client
+          npm install
+
+      - name: Build Client
+        run: |
+          cd client
+          npm run build
+
+      - name: Restart Server
+        run: |
+          # Assuming pm2 is used for process management on the server
+          # Replace 'server-app' with your actual pm2 process name if different
+          pm2 restart all || pm2 start server/server.js --name "server-app"
+
+      - name: Update Client (Move build to web server root)
+        run: |
+          # Replace /var/www/html with your actual web server root
+          # sudo cp -r client/dist/* /var/www/html/
+          echo "Deployment successful. Ensure your web server points to client/dist or move the files accordingly."

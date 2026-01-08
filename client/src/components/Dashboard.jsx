@@ -51,7 +51,7 @@ const Dashboard = ({ onLogout }) => {
     const fetchTeam = async () => {
         try {
             const token = sessionStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/api/team/my-team', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/my-team`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -71,7 +71,7 @@ const Dashboard = ({ onLogout }) => {
     const fetchInvitations = async () => {
         try {
             const token = sessionStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/api/team/my-invitations', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/my-invitations`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -88,7 +88,7 @@ const Dashboard = ({ onLogout }) => {
     const fetchProjects = async () => {
         try {
             const token = sessionStorage.getItem('token');
-            const url = team ? `http://localhost:8080/api/project?teamId=${team._id}` : 'http://localhost:8080/api/project';
+            const url = team ? `${import.meta.env.VITE_API_URL}/api/project?teamId=${team._id}` : `${import.meta.env.VITE_API_URL}/api/project`;
             const res = await fetch(url, {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -109,7 +109,7 @@ const Dashboard = ({ onLogout }) => {
     const handleAcceptInvitation = async (token, teamName) => {
         try {
             const authToken = sessionStorage.getItem('token');
-            const res = await fetch(`http://localhost:8080/api/team/accept-invitation/${token}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/accept-invitation/${token}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${authToken}`
@@ -153,7 +153,7 @@ const Dashboard = ({ onLogout }) => {
 
         try {
             const token = sessionStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/api/team/leave', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/leave`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

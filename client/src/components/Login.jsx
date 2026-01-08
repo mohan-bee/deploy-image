@@ -17,7 +17,7 @@ const Login = ({ onLoginSuccess }) => {
   const handleSuccess = async (credentialResponse) => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8080/api/auth/google', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const Login = ({ onLoginSuccess }) => {
     setLoading(true);
     try {
       const token = sessionStorage.getItem('token');
-      const res = await fetch('http://localhost:8080/api/auth/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/profile`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

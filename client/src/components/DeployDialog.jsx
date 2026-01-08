@@ -69,7 +69,7 @@ const DeployDialog = ({ isOpen, onClose, teamId, onSuccess }) => {
                     // Record the project in our backend
                     try {
                         const token = sessionStorage.getItem('token');
-                        await fetch('http://localhost:8080/api/project/record', {
+                        await fetch(`${import.meta.env.VITE_API_URL}/api/project/record`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

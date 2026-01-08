@@ -83,7 +83,7 @@ const CreateTeam = ({ onClose, onTeamCreated }) => {
             const token = sessionStorage.getItem('token');
             const validEmails = emails.filter(email => email.trim() !== '');
 
-            const res = await fetch('http://localhost:8080/api/team/create', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

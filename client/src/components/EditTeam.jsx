@@ -48,7 +48,7 @@ const EditTeam = ({ team, onClose, onTeamUpdated }) => {
             setSearchLoading(true);
             try {
                 const token = sessionStorage.getItem('token');
-                const res = await fetch(`http://localhost:8080/api/team/search-users?query=${encodeURIComponent(query)}`, {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/search-users?query=${encodeURIComponent(query)}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -84,7 +84,7 @@ const EditTeam = ({ team, onClose, onTeamUpdated }) => {
 
             // Update team name if changed
             if (teamName !== team.name) {
-                const res = await fetch(`http://localhost:8080/api/team/update`, {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/update`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const EditTeam = ({ team, onClose, onTeamUpdated }) => {
             console.log('New emails to invite:', newEmails);
 
             if (newEmails.length > 0) {
-                const res = await fetch('http://localhost:8080/api/team/invite', {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/invite`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ const EditTeam = ({ team, onClose, onTeamUpdated }) => {
             }
 
             // Fetch updated team
-            const res = await fetch('http://localhost:8080/api/team/my-team', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/my-team`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const updatedTeam = await res.json();
@@ -163,7 +163,7 @@ const EditTeam = ({ team, onClose, onTeamUpdated }) => {
         setLoading(true);
         try {
             const token = sessionStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/api/team/delete', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/delete`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -194,7 +194,7 @@ const EditTeam = ({ team, onClose, onTeamUpdated }) => {
         setLoading(true);
         try {
             const token = sessionStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/api/team/leave', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/team/leave`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
